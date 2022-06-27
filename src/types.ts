@@ -31,7 +31,7 @@ export interface RegionalBloc {
     otherNames: string[];
     otherAcronyms: string[];
 }
-
+// this is the rootObject, we change name to "countryType" 
 export interface CountryType {
     name: string;
     topLevelDomain: string[];
