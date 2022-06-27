@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import Country from "./components/Country";
 import { useEffectOnce } from "./Hooks/useEffectOnce";
 import { CountryType } from "./types";
 
@@ -24,9 +25,13 @@ const App = () => {
   console.log(countries);
   return (
     <div>
-      <h1>Hello World</h1>
+      {countries.map((country, index) => (
+        <Country key={country.alpha3Code} country={country}>
+            <h3>{index+1}</h3>
+        </Country>
+        ))}
     </div>
-  );
-};
+    );
+}
 
 export default App;
