@@ -1,12 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
 import Country from "./components/Country";
+import Loading from "./components/Loading";
 import { useEffectOnce } from "./Hooks/useEffectOnce";
 import { CountryType } from "./types";
 
 const App = () => {
   const [countries, setCountries] = useState<CountryType[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const getCountries = async () => {
+    setLoading(true);
     try {
       const { data } = await axios.get<CountryType[]>(
         "https://restcountries.com/v2/all"
@@ -14,6 +17,8 @@ const App = () => {
       setCountries(data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -25,11 +30,15 @@ const App = () => {
   console.log(countries);
   return (
     <div>
+        <Loading loading={loading}>
       {countries.map((country, index) => (
         <Country key={country.alpha3Code} country={country}>
-            <h3>{index+1}</h3>
+            
+                <h3>{index+1}</h3>
+            
         </Country>
         ))}
+        </Loading>
     </div>
     );
 }

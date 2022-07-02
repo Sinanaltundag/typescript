@@ -10,10 +10,17 @@ const Country: FunctionComponent<ICountryProps> = (props) => {
     const { country } = props
   return (
     <div>
-{country.name}
-{/* to get children like this, we need to add interface "children: React.ReactNode" as above */}
-{props.children}
+        {/* to get children like this, we need to add interface "children: React.ReactNode" as above */}
+        <div className="countryChildren">{props.children}</div>
+        <p>{country.name}</p>
+        <p>{country.capital}</p>
+        <p>{country.population}</p>
+        <p>{country.region}</p>
+        <p>{country.area}</p>
+        <p>{country.nativeName}</p>
     </div>
+
+
   )
 }
 
